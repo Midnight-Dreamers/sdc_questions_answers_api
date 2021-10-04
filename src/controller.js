@@ -17,16 +17,7 @@ const getAnswers = (req, res) => {
     if (error) {
       console.error(error);
     }
-    res.status(200).json(results.rows);
-  });
-};
-
-const getPhotos = (req, res) => {
-  pool.query(queries.getPhotos, (error, results) => {
-    if (error) {
-      console.error(error);
-    }
-    res.status(200).json(results.rows);
+    res.status(200).json(results.rows[0].json_build_object);
   });
 };
 
@@ -43,6 +34,5 @@ const addQuestion = (req, res) => {
 module.exports = {
   getQuestions,
   addQuestion,
-  getAnswers,
-  getPhotos
+  getAnswers
 }

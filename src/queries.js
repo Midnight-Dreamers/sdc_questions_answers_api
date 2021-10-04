@@ -3,14 +3,14 @@ const getQuestions = `SELECT json_build_object(
   'results', json_agg(json_build_object(
     'question_id', id,
     'question_body', body,
-    'question_date', TO_CHAR(TO_TIMESTAMP(date_written / 1000.0) AT TIME ZONE 'utc', 'YYYY-MM-DDFMTHH:MI:SS.MSZ'),
+    'question_date', TO_CHAR(TO_TIMESTAMP(date_written / 1000.0) AT TIME ZONE 'utc', 'YYYY-MM-DDFMTHH:MI:SS.MSFMZ'),
     'asker_name', asker_name,
     'question_helpfulness', helpfulness,
     'reported', reported,
     'answers', (SELECT json_object_agg(answers.id, json_build_object(
       'id', id,
       'body', body,
-      'date', TO_CHAR(TO_TIMESTAMP(date_written / 1000.0) AT TIME ZONE 'utc', 'YYYY-MM-DDFMTHH:MI:SS.MSZ'),
+      'date', TO_CHAR(TO_TIMESTAMP(date_written / 1000.0) AT TIME ZONE 'utc', 'YYYY-MM-DDFMTHH:MI:SS.MSFMZ'),
       'answerer_name', answerer_name,
       'helpfulness', helpfulness,
       'photos', (SELECT json_agg(json_build_object(
@@ -21,12 +21,27 @@ const getQuestions = `SELECT json_build_object(
   ))
 ) FROM questions WHERE product_id = $1 GROUP BY questions.product_id`;
 
-const addQuestion = 'INSERT INTO questions (body, asker_name, asker_email, product_id, date_written) VALUES ($1, $2, $3, $4, $5)';
-const getAnswers = 'SELECT * FROM answers WHERE question_id = $1';
-const getPhotos = 'SELECT * FROM photos WHERE answer_id = 5';
+const addQuestion = `INSERT INTO
+  questions (body, asker_name, asker_email, product_id, date_written)
+  VALUES ($1, $2, $3, $4, $5)`;
+
+const getAnswers = `SELECT json_build_object(
+  'question', question_id,
+  'results', json_agg(json_build_object(
+    'answer_id', id,
+    'body', body,
+    'date', TO_CHAR(TO_TIMESTAMP(date_written / 1000.0) AT TIME ZONE 'utc', 'YYYY-MM-DDFMTHH:MI:SS.MSFMZ'),
+    'answerer_name', answerer_name,
+    'helpfulness', helpfulness,
+    'photos', (SELECT json_agg(json_build_object(
+      'id', id,
+      'url', photo_url
+    )) FROM photos WHERE answer_id = answers.id)
+  ))
+) FROM answers WHERE question_id = $1 GROUP BY answers.question_id`;
+
 module.exports = {
   getQuestions,
   addQuestion,
-  getAnswers,
-  getPhotos
+  getAnswers
 }
