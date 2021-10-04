@@ -31,8 +31,20 @@ const addQuestion = (req, res) => {
   });
 };
 
+const addAnswer = (req, res) => {
+  const { body, name, email } = req.body;
+  const question_id = req.params.question_id;
+  pool.query(queries.addAnswer, [question_id, body, name, email, new Date().getTime()], (error, response) => {
+    if (error) {
+      console.error(error);
+    }
+    res.status(201).send('Answer Added');
+  })
+}
+
 module.exports = {
   getQuestions,
   addQuestion,
-  getAnswers
+  getAnswers,
+  addAnswer
 }

@@ -40,8 +40,13 @@ const getAnswers = `SELECT json_build_object(
   ))
 ) FROM answers WHERE question_id = $1 GROUP BY answers.question_id`;
 
+const addAnswer = `INSERT INTO
+answers ( question_id, body, answerer_name, answerer_email, date_written)
+VALUES ($1, $2, $3, $4, $5)`;
+
 module.exports = {
   getQuestions,
   addQuestion,
-  getAnswers
+  getAnswers,
+  addAnswer
 }
