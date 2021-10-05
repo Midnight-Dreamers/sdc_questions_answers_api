@@ -39,12 +39,23 @@ const addAnswer = (req, res) => {
       console.error(error);
     }
     res.status(201).send('Answer Added');
-  })
-}
+  });
+};
+
+const updateQuestionHelpfulness = (req, res) => {
+  const question_id = req.params.question_id;
+  pool.query(queries.questionHelpfulness, [question_id], (error, results) => {
+    if (error) {
+      console.error(error);
+    }
+    res.status(204).send('updated helpfulness');
+  });
+};
 
 module.exports = {
   getQuestions,
   addQuestion,
   getAnswers,
-  addAnswer
+  addAnswer,
+  updateQuestionHelpfulness
 }
