@@ -45,11 +45,13 @@ answers ( question_id, body, answerer_name, answerer_email, date_written)
 VALUES ($1, $2, $3, $4, $5)`;
 
 const questionHelpfulness = `UPDATE questions SET helpfulness = (questions.helpfulness + 1) WHERE id = $1`;
+const questionReported = `UPDATE questions SET reported = true WHERE id = $1`;
 
 module.exports = {
   getQuestions,
   addQuestion,
   getAnswers,
   addAnswer,
-  questionHelpfulness
+  questionHelpfulness,
+  questionReported
 }

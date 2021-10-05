@@ -52,10 +52,21 @@ const updateQuestionHelpfulness = (req, res) => {
   });
 };
 
+const updateQuestionReported = (req, res) => {
+  const question_id = req.params.question_id;
+  pool.query(queries.questionReported, [question_id], (error, results) => {
+    if (error) {
+      console.error(error);
+    }
+    res.status(204).send('reported');
+  });
+};
+
 module.exports = {
   getQuestions,
   addQuestion,
   getAnswers,
   addAnswer,
-  updateQuestionHelpfulness
+  updateQuestionHelpfulness,
+  updateQuestionReported
 }
