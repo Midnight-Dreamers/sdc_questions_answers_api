@@ -62,11 +62,33 @@ const updateQuestionReported = (req, res) => {
   });
 };
 
+const updateAnswerHelpfulness = (req, res) => {
+  const answer_id = req.params.answer_id;
+  pool.query(queries.answerHelpfulness, [answer_id], (error, results) => {
+    if (error) {
+      console.error(error);
+    }
+    res.status(204).send('updated helpfulness');
+  });
+};
+
+const updateAnswerReported = (req, res) => {
+  const answer_id = req.params.answer_id;
+  pool.query(queries.answerReported, [answer_id], (error, results) => {
+    if (error) {
+      console.error(error);
+    }
+    res.status(204).send('reported');
+  });
+};
+
 module.exports = {
   getQuestions,
   addQuestion,
   getAnswers,
   addAnswer,
   updateQuestionHelpfulness,
-  updateQuestionReported
+  updateQuestionReported,
+  updateAnswerHelpfulness,
+  updateAnswerReported
 }
