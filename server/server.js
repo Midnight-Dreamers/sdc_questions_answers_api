@@ -6,7 +6,7 @@ const port = 3000;
 
 app.use(express.json());
 
-app.use('/qa/questions', routes);
+app.use('/qa', routes);
 
 app.listen(port, () => {
   console.log(`Running on port: ${port}`);
