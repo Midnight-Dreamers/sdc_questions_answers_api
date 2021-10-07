@@ -39,3 +39,15 @@ COPY photos FROM '/Users/jasonk87/HackReactor/Assignments/sdc_questions_answers_
 SELECT setval('questions_id_seq', (SELECT MAX(id) FROM questions));
 SELECT setval('answers_id_seq', (SELECT MAX(id) FROM answers));
 SELECT setval('photos_id_seq', (SELECT MAX(id) FROM photos));
+
+CREATE INDEX productId_idx on questions (
+  product_id
+);
+
+CREATE INDEX questionId_idx on answers (
+  question_id
+);
+
+CREATE INDEX answerId_idx on photos (
+  answer_id
+);
