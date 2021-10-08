@@ -1,6 +1,6 @@
 FROM node:latest
 
-mkdir /server/
+run mkdir /server/
 
 COPY server /server/
 
