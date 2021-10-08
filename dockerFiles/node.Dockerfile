@@ -1,10 +1,10 @@
 FROM node:latest
 
-WORKDIR /sdc_questions_answers_api
-
 run mkdir /server/
 
-COPY server /server/
+COPY . /server/
+
+WORKDIR /server
 
 RUN npm install
 
