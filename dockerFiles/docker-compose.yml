@@ -15,7 +15,7 @@ services:
     container_name: sdc-postgres
     ports:
       - 3002:5432
-    enviroment:
+    environment:
       POSTGRESS_PASSWORD: ''
     build:
       context: .
