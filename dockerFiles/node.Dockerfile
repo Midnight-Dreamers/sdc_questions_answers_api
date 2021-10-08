@@ -1,5 +1,7 @@
 FROM node:latest
 
+WORKDIR sdc_questions_answers_api
+
 run mkdir /server/
 
 COPY server /server/
