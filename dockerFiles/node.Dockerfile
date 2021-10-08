@@ -1,6 +1,6 @@
 FROM node:latest
 
-WORKDIR sdc_questions_answers_api
+WORKDIR /sdc_questions_answers_api
 
 run mkdir /server/
 
