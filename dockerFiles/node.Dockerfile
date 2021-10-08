@@ -1,6 +1,8 @@
 FROM node:latest
 
-COPY server
+mkdir /server/
+
+COPY server /server/
 
 RUN npm install
 
