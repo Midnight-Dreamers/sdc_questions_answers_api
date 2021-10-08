@@ -21,6 +21,8 @@
   "homepage": "https://github.com/Midnight-Dreamers/sdc_questions_answers_api#readme",
   "dependencies": {
     "axios": "^0.21.4",
+    "docker": "^1.0.0",
+    "docker-compose": "^0.23.13",
     "express": "^4.17.1",
     "pg": "^8.7.1"
   },
