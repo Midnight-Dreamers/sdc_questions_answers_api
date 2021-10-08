@@ -1,3 +1,5 @@
+FROM postgres:latest
+
 run mkdir /CSVs/
 
 COPY *.csv /CSVs/
