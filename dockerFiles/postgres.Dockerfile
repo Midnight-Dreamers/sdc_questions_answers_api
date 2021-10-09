@@ -2,7 +2,7 @@ FROM postgres:latest
 
 run mkdir /CSVs/
 
-COPY CSVs/*.csv /CSVs/
+COPY dockerFiles/*.csv /CSVs/
 
 RUN chmod a+rx /CSVs
 
