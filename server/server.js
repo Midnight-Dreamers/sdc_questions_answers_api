@@ -2,7 +2,7 @@ const express = require('express');
 const routes = require('../src/routes.js');
 
 const app = express();
-const port = 3000;
+const port = 1234;
 
 app.use(express.json());
 

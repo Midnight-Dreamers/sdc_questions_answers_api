@@ -1,3 +1,7 @@
+DROP DATABASE IF EXISTS q_and_a;
+CREATE DATABASE q_and_a;
+
+\c q_and_a
 
 DROP TABLE IF EXISTS questions CASCADE;
 CREATE TABLE questions (
@@ -32,9 +36,9 @@ CREATE TABLE photos (
   FOREIGN KEY(answer_id) REFERENCES answers (id)
 );
 
-COPY questions FROM '/Users/jasonk87/HackReactor/Assignments/sdc_questions_answers_api/CSVs/questions.csv' CSV HEADER;
-COPY answers FROM '/Users/jasonk87/HackReactor/Assignments/sdc_questions_answers_api/CSVs/answers.csv' CSV HEADER;
-COPY photos FROM '/Users/jasonk87/HackReactor/Assignments/sdc_questions_answers_api/CSVs/answers_photos.csv' CSV HEADER;
+COPY questions FROM '/CSVs/questions.csv' CSV HEADER;
+COPY answers FROM '/CSVs/answers.csv' CSV HEADER;
+COPY photos FROM '/CSVs/answers_photos.csv' CSV HEADER;
 
 SELECT setval('questions_id_seq', (SELECT MAX(id) FROM questions));
 SELECT setval('answers_id_seq', (SELECT MAX(id) FROM answers));

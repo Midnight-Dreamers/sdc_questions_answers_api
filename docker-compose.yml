@@ -6,7 +6,7 @@ services:
     ports:
       - 3000:1234
     build:
-      context: ..
+      context: .
       dockerfile: dockerFiles/node.Dockerfile
   postgres:
     image: sdc-postgres
@@ -14,7 +14,7 @@ services:
     ports:
       - 3002:5432
     environment:
-      POSTGRESS_PASSWORD: ''
+      POSTGRES_PASSWORD: password123
     build:
-      context: ..
+      context: .
       dockerfile: dockerFiles/postgres.Dockerfile
